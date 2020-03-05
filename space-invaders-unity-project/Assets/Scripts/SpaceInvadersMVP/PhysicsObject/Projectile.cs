@@ -1,9 +1,8 @@
 using System;
-using SpaceInvadersMVP.PhysicsObject;
 using UnityEngine;
 using Zenject;
 
-namespace SpaceInvadersMVP.Weapon {
+namespace SpaceInvadersMVP.PhysicsObject {
     public class Projectile : PhysicsObjectBase, IPoolable<Transform, float, IMemoryPool>,
                               IDisposable
     {

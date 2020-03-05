@@ -12,7 +12,8 @@ namespace SpaceInvadersMVP.Installer {
 
         public override void InstallBindings()
         {
-            Container.BindFactory<Vector2, Explosion, Explosion.Factory>().FromMonoPoolableMemoryPool(
+            Container.BindFactory<Vector2, bool, Explosion, Explosion.Factory>()
+            .FromMonoPoolableMemoryPool(
                 x => x.WithInitialSize(Config.InitialPooledExplosions)
                       .FromComponentInNewPrefab(_explosionPrefab)
                       .UnderTransformGroup("ExplosionPool"));

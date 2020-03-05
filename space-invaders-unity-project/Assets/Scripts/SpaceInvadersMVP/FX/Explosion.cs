@@ -1,6 +1,7 @@
 using System;
 using DG.Tweening;
 using SpaceInvadersMVP.Util;
+using TMPro;
 using UnityEngine;
 using Zenject;
 using Random = UnityEngine.Random;
@@ -8,7 +9,7 @@ using Random = UnityEngine.Random;
 namespace SpaceInvadersMVP.FX
 {
     [RequireComponent(typeof(SpriteRenderer))]
-    public class Explosion : MonoBehaviour, IPoolable<Vector2, IMemoryPool>, IDisposable
+    public class Explosion : MonoBehaviour, IPoolable<Vector2, bool, IMemoryPool>, IDisposable
     {
         [SerializeField]
         private SpriteRenderer _spriteRenderer;
@@ -27,6 +28,11 @@ namespace SpaceInvadersMVP.FX
             "fire\nemoji", "incredible", "amazing"
         };
 
+        private static readonly string[] DiscouragingTextOptions =
+        {
+            "oh no", "oops", "oh\ndear", "nooooooo!", "oh god", "errr...", "whatever", "wait\nwhat"
+        };
+
         private void Awake()
         {
             if (_spriteRenderer == null)
@@ -35,15 +41,19 @@ namespace SpaceInvadersMVP.FX
             }
         }
 
-        public void OnSpawned(Vector2 position, IMemoryPool pool)
+        public void OnSpawned(Vector2 position, bool benefitsPlayer, IMemoryPool pool)
         {
             Transform t = transform;
             t.position = position;
             t.localScale = Vector3.one * 0.5f;
-            _spriteRenderer.color = new Color(1f, 1f, 1f, 0.5f);
-            _textMesh.text =
-                EncouragingTextOptions[
-                    Mathf.FloorToInt(Random.value * EncouragingTextOptions.Length)];
+            string[] textOptions =
+                benefitsPlayer ? EncouragingTextOptions : DiscouragingTextOptions;
+            float r = Random.value;
+            r = r == 1f ? 0f : r;
+            _textMesh.text = textOptions[Mathf.FloorToInt(r * textOptions.Length)];
+            Color color = benefitsPlayer ? Color.green : Color.red;
+            color.a = 0.5f;
+            _spriteRenderer.color = color;
             _pool = pool;
             Animate();
         }
@@ -77,6 +87,6 @@ namespace SpaceInvadersMVP.FX
             _pool?.Despawn(this);
         }
 
-        public class Factory : PlaceholderFactory<Vector2, Explosion> { }
+        public class Factory : PlaceholderFactory<Vector2, bool, Explosion> { }
     }
 }

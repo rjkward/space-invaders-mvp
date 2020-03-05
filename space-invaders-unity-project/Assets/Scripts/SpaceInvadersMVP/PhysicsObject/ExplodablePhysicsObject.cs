@@ -11,8 +11,10 @@ namespace SpaceInvadersMVP.PhysicsObject {
         private void OnCollisionEnter2D(Collision2D _)
         {
             Explode();
-            _explosionPool.Create(transform.position);
+            _explosionPool.Create(transform.position, DestructionBenefitsPlayer);
         }
+
+        protected virtual bool DestructionBenefitsPlayer => true;
 
         protected abstract void Explode();
     }

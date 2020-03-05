@@ -1,3 +1,4 @@
+using SpaceInvadersMVP.PhysicsObject;
 using SpaceInvadersMVP.Util;
 using UnityEngine;
 using Zenject;
