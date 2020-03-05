@@ -1,0 +1,18 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 296cc19542d04926be0621d3e9258821, type: 3}
+  m_Name: MainMenuUIInstaller
+  m_EditorClassIdentifier: 
+  _activeStates: 0100000002000000
+  _prefabs:
+  - {fileID: 4261296941584861744, guid: d6c4982a07b7545f4879b1f4ebda0d24, type: 3}
+  - {fileID: 4261296941584861744, guid: 0d99b50dcd1854cb5b5cf9c16cd56782, type: 3}

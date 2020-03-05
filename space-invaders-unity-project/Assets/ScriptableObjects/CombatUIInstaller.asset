@@ -1,0 +1,21 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 487040697f1564ad68fd151788f8e896, type: 3}
+  m_Name: CombatUIInstaller
+  m_EditorClassIdentifier: 
+  _activeStates: 0100000003000000030000000400000008000000
+  _prefabs:
+  - {fileID: 2172440509601271621, guid: 677e07b6bde974f4788b0bb2ed1aa023, type: 3}
+  - {fileID: 2172440509601271621, guid: d5f08a2dbb8cc403aaecd14c8f31f6fb, type: 3}
+  - {fileID: 2172440509601271621, guid: 1c3a1370eeb674224bc6caff975eaf15, type: 3}
+  - {fileID: 4261296941584861744, guid: d9a4176364c174ac688119d8415f3abe, type: 3}
+  - {fileID: 4261296941584861744, guid: 2289b95b6a62d4026af2c1f5d6936d4f, type: 3}
