@@ -50,8 +50,8 @@ namespace SpaceInvadersMVP.Model
             else
             {
                 _highScoreList = new List<HighScore>();
-                AddHighscore("truegamer420", 100);
-                AddHighscore("callmebyyourgamertag", 500);
+                AddHighscore("abi", 100);
+                AddHighscore("dave", 500);
                 AddHighscore("sharon", 1000);
             }
         }
