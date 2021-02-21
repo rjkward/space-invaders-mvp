@@ -1,6 +1,6 @@
 namespace SpaceInvadersMVP.Util
 {
-    public class FleetCoordinate
+    public struct FleetCoordinate
     {
         public int ColumnIndex;
         public int RowIndex;
