@@ -9,7 +9,7 @@ namespace SpaceInvadersMVP.Manager
     public abstract class UIManager<TState> : IDisposable where TState : Enum
     {
         [Inject]
-        protected Dictionary<TState, GameObject[]> ViewPrefabsByState;
+        protected Dictionary<TState, List<GameObject>> ViewPrefabsByState;
 
         protected Dictionary<GameObject, GameObject> CachedViewsByPrefab =
             new Dictionary<GameObject, GameObject>();
@@ -27,7 +27,7 @@ namespace SpaceInvadersMVP.Manager
         protected void DisplayViewsForState(TState state)
         {
             _newStateBuffer.Clear();
-            if (ViewPrefabsByState.TryGetValue(state, out GameObject[] viewPrefabs))
+            if (ViewPrefabsByState.TryGetValue(state, out List<GameObject> viewPrefabs))
             {
                 foreach (GameObject viewPrefab in viewPrefabs)
                 {

@@ -45,7 +45,7 @@ namespace SpaceInvadersMVP.Model
             if (!string.IsNullOrEmpty(serialized))
             {
                 _highScoreList =
-                    JsonUtility.FromJson<ScoreSerializationHelper>(serialized).Score.ToList();
+                    JsonUtility.FromJson<ScoreSerializationHelper>(serialized).Score;
             }
             else
             {
@@ -59,7 +59,7 @@ namespace SpaceInvadersMVP.Model
         private void Save()
         {
             string serialized =
-                JsonUtility.ToJson(new ScoreSerializationHelper {Score = _highScoreList.ToArray()});
+                JsonUtility.ToJson(new ScoreSerializationHelper { Score = _highScoreList });
             PlayerPrefs.SetString(HighScoreKey, serialized);
             PlayerPrefs.Save();
         }
@@ -69,7 +69,7 @@ namespace SpaceInvadersMVP.Model
         [Serializable]
         private class ScoreSerializationHelper
         {
-            public HighScore[] Score;
+            public List<HighScore> Score;
         }
     }
 }

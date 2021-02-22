@@ -10,25 +10,23 @@ namespace SpaceInvadersMVP.Util.Enum
     }
 
     [Serializable]
-    [Flags]
     public enum MainMenuState
     {
-        None = 0,
-        MainMenu = 1 << 0,
-        HighScores = 1 << 1,
-        LoadingCombat = 1 << 2
+        None,
+        MainMenu,
+        HighScores,
+        LoadingCombat
     }
 
     [Serializable]
-    [Flags]
     public enum CombatState
     {
-        None = 0,
-        PreparingForWave  = 1 << 0,
-        DuringWave = 1 << 1,
-        GameOver  = 1 << 2,
-        AfterCombatScreen  = 1 << 3,
-        Loading  = 1 << 4
+        None,
+        PreparingForWave,
+        DuringWave,
+        GameOver,
+        AfterCombatScreen,
+        Loading
     }
 
     public enum CombatOutcome
