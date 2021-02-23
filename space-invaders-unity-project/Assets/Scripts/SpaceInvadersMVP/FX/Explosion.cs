@@ -43,19 +43,23 @@ namespace SpaceInvadersMVP.FX
 
         public void OnSpawned(Vector2 position, bool benefitsPlayer, IMemoryPool pool)
         {
+            SetStartingValues(position, benefitsPlayer);
+            _pool = pool;
+            Animate();
+        }
+
+        private void SetStartingValues(Vector2 position, bool benefitsPlayer)
+        {
             Transform t = transform;
             t.position = position;
             t.localScale = Vector3.one * 0.5f;
-            string[] textOptions =
-                benefitsPlayer ? EncouragingTextOptions : DiscouragingTextOptions;
-            float r = Random.value;
-            r = r == 1f ? 0f : r;
-            _textMesh.text = textOptions[Mathf.FloorToInt(r * textOptions.Length)];
+
+            string[] textOptions = benefitsPlayer ? EncouragingTextOptions : DiscouragingTextOptions;
+            _textMesh.text = textOptions[Random.Range(0, textOptions.Length)];
+
             Color color = benefitsPlayer ? Color.green : Color.red;
             color.a = 0.5f;
             _spriteRenderer.color = color;
-            _pool = pool;
-            Animate();
         }
 
         private void Animate()
@@ -68,7 +72,6 @@ namespace SpaceInvadersMVP.FX
                 _animationSequence = null;
                 Dispose();
             };
-
         }
 
         public void OnDespawned()
