@@ -9,7 +9,7 @@ namespace SpaceInvadersMVP.Installer
 	public abstract class UIInstaller<T> : ScriptableObjectInstaller<UIInstaller<T>> where T : Enum
 	{
 		[SerializeField]
-		private List<ViewConfig> _viewConfigs;
+		private ViewConfig[] _viewConfigs;
 
 		public override void InstallBindings()
 		{
@@ -41,7 +41,7 @@ namespace SpaceInvadersMVP.Installer
 		private struct ViewConfig
 		{
 			public GameObject View;
-			public List<T> ActiveStates;
+			public T[] ActiveStates;
 		}
 	}
 }
