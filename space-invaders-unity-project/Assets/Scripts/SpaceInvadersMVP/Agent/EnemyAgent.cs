@@ -18,7 +18,7 @@ namespace SpaceInvadersMVP.Agent
         [Inject]
         private SignalBus _signalBus;
 
-        private readonly FleetCoordinate _fleetCoordinate;
+        private FleetCoordinate _fleetCoordinate;
 
         private bool _canFire;
 
@@ -26,10 +26,9 @@ namespace SpaceInvadersMVP.Agent
 
         private float _lastFireTime;
 
-        [Inject]
-        public EnemyAgent(FleetCoordinate fleetCoordinate)
+        public void SetFleetCoordinate(int column, int row)
         {
-            _fleetCoordinate = fleetCoordinate;
+	        _fleetCoordinate = new FleetCoordinate(column, row);
         }
 
         public void Reset()

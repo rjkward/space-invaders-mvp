@@ -72,9 +72,9 @@ namespace SpaceInvadersMVP.Manager
                 EnemyAgent agent = _fleetModel[columnIndex][rowIndex];
                 if (agent == null)
                 {
-                    object[] extraArgs = { new FleetCoordinate(columnIndex, rowIndex) };
-                    agent = _container.Instantiate<EnemyAgent>(extraArgs);
+                    agent = _container.Instantiate<EnemyAgent>();
                     _fleetModel[columnIndex][rowIndex] = agent;
+                    agent.SetFleetCoordinate(columnIndex, rowIndex);
                 }
 
                 agent.Reset();
