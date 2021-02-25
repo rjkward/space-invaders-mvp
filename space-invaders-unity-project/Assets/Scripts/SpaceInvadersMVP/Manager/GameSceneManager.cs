@@ -25,7 +25,6 @@ namespace SpaceInvadersMVP.Manager
 
         private void HandleNewGameStateRequest(RequestNewGameStateSignal signal)
         {
-
             switch (signal.State)
             {
                 case GameState.None:

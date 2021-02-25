@@ -4,6 +4,7 @@ using SpaceInvadersMVP.Model;
 using SpaceInvadersMVP.Signal;
 using SpaceInvadersMVP.Spawn;
 using SpaceInvadersMVP.UI;
+using SpaceInvadersMVP.Util.Enum;
 using UnityEngine;
 using Zenject;
 
@@ -21,7 +22,7 @@ namespace SpaceInvadersMVP.Installer {
 
         public override void InstallBindings()
         {
-            Container.Bind<CombatSessionModel>().AsSingle();
+            Container.BindInterfacesAndSelfTo<CombatSessionModel>().AsSingle();
             InstallManagers();
             InstallSceneReferences();
             InstallAgents();
@@ -50,7 +51,7 @@ namespace SpaceInvadersMVP.Installer {
             Container.BindInterfacesTo<CombatManager>().AsSingle().NonLazy();
             Container.BindInterfacesTo<PlayerShipManager>().AsSingle().NonLazy();
             Container.BindInterfacesTo<EnemyFleetManager>().AsSingle().NonLazy();
-            Container.BindInterfacesTo<CombatUIManager>().AsSingle().NonLazy();
+            Container.BindInterfacesTo<UIManager<CombatState>>().AsSingle().NonLazy();
             Container.BindInterfacesTo<ScoreManager>().AsSingle().NonLazy();
         }
 

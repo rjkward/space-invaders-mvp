@@ -2,6 +2,7 @@ using SpaceInvadersMVP.Manager;
 using SpaceInvadersMVP.Model;
 using SpaceInvadersMVP.Signal;
 using SpaceInvadersMVP.UI;
+using SpaceInvadersMVP.Util.Enum;
 using Zenject;
 
 namespace SpaceInvadersMVP.Installer
@@ -11,9 +12,9 @@ namespace SpaceInvadersMVP.Installer
         public override void InstallBindings()
         {
             Container.BindInterfacesTo<MainMenuManager>().AsSingle().NonLazy();
-            Container.BindInterfacesTo<MainMenuUIManager>().AsSingle().NonLazy();
+            Container.BindInterfacesTo<UIManager<MainMenuState>>().AsSingle().NonLazy();
 
-            Container.Bind<MainMenuModel>().AsSingle();
+            Container.BindInterfacesAndSelfTo<MainMenuModel>().AsSingle();
 
             Container.BindInterfacesAndSelfTo<MainMenuViewModel>().AsSingle();
             Container.BindInterfacesAndSelfTo<HighScoresViewModel>().AsSingle();

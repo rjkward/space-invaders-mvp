@@ -1,30 +1,59 @@
 using System;
 using System.Collections.Generic;
+using SpaceInvadersMVP.Model;
 using UnityEngine;
 using Zenject;
 using Object = UnityEngine.Object;
 
 namespace SpaceInvadersMVP.Manager
 {
-    public abstract class UIManager<TState> : IDisposable where TState : Enum
+    public class UIManager<TState> : IInitializable, IDisposable where TState : Enum
     {
         [Inject]
-        protected Dictionary<TState, List<GameObject>> ViewPrefabsByState;
-
-        protected Dictionary<GameObject, GameObject> CachedViewsByPrefab =
-            new Dictionary<GameObject, GameObject>();
-
+        private IUIStateModel<TState> _model;
+        
         [Inject]
         private Canvas _canvas;
 
         [Inject]
         private DiContainer _container;
+        
+        [Inject]
+        private Dictionary<TState, List<GameObject>> ViewPrefabsByState;
+
+        private Dictionary<GameObject, GameObject> CachedViewsByPrefab =
+            new Dictionary<GameObject, GameObject>();
 
         private List<GameObject> _displayedViews = new List<GameObject>();
 
         private List<GameObject> _newStateBuffer = new List<GameObject>();
 
-        protected void DisplayViewsForState(TState state)
+        public void Initialize()
+        {
+            _model.UIState.Subscribe(DisplayViewsForState);
+        }
+
+        public virtual void Dispose()
+        {
+            _model.UIState.Unsubscribe(DisplayViewsForState);
+            
+            ViewPrefabsByState = null;
+            foreach (GameObject cachedView in CachedViewsByPrefab.Values)
+            {
+                if (cachedView != null)
+                {
+                    Object.Destroy(cachedView);
+                }
+            }
+
+            CachedViewsByPrefab.Clear();
+            _displayedViews.Clear();
+            _displayedViews = null;
+            _newStateBuffer.Clear();
+            _newStateBuffer = null;
+        }
+
+        private void DisplayViewsForState(TState state)
         {
             _newStateBuffer.Clear();
             if (ViewPrefabsByState.TryGetValue(state, out List<GameObject> viewPrefabs))
@@ -54,25 +83,6 @@ namespace SpaceInvadersMVP.Manager
 
             _displayedViews.Clear();
             _displayedViews.AddRange(_newStateBuffer);
-        }
-
-
-        public virtual void Dispose()
-        {
-            ViewPrefabsByState = null;
-            foreach (GameObject cachedView in CachedViewsByPrefab.Values)
-            {
-                if (cachedView != null)
-                {
-                    Object.Destroy(cachedView);
-                }
-            }
-
-            CachedViewsByPrefab.Clear();
-            _displayedViews.Clear();
-            _displayedViews = null;
-            _newStateBuffer.Clear();
-            _newStateBuffer = null;
         }
     }
 }
