@@ -79,7 +79,7 @@ namespace SpaceInvadersMVP.Manager
 
                 agent.Reset();
                 _shipFactory.Create(spawnPoint,
-                                      agent, // IShipPilot
+                                      agent,  // IShipPilot
                                       agent); // IShipGunner
                 if (rowIndex == 0)
                 {

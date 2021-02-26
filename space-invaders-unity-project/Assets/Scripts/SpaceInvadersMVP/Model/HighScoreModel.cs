@@ -67,7 +67,7 @@ namespace SpaceInvadersMVP.Model
         // Horrible hack to avoid having to install a proper serialization library and just using
         // Unity's built in serialization
         [Serializable]
-        private class ScoreSerializationHelper
+        private struct ScoreSerializationHelper
         {
             public List<HighScore> Score;
         }
